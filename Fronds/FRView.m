@@ -132,33 +132,39 @@
         [dotColor setFill];
         [[UIColor blackColor] setStroke];
         
-        path.lineWidth = 1;
-        [path fill];
-        [path stroke];
+//        path.lineWidth = 1;
+//        [path fill];
+//        [path stroke];
 
         if (isInSunshine)
         {
-            UIBezierPath *plantPath = [UIBezierPath bezierPath];
-            CGPoint startPoint = CGPointMake(self.planetCenter.x + dotCenter.x, self.planetCenter.y + dotCenter.y);
-            [plantPath moveToPoint:startPoint];
-            CGPoint plantVector = CGPointMake(cosf(dotAngle), sinf(dotAngle));
-            
-            CGPoint previousPoint = startPoint;
-            for (int i = 0; i < 10; i++)
-            {
-                float plantLength = 10 + 20 * (arc4random() / (float)0x100000000);
-                CGPoint plantOffset = CGPointMake(20 * ((arc4random() / (float)0x100000000) * 2 - 1),
-                                                  20 * ((arc4random() / (float)0x100000000) * 2 - 1));
-                CGPoint nextPoint = CGPointMake(previousPoint.x + plantVector.x * plantLength + plantOffset.x,
-                                                previousPoint.y + plantVector.y * plantLength + plantOffset.y);
-                [plantPath addLineToPoint:nextPoint];
-                previousPoint = nextPoint;
-            }
-
-            
-            [[UIColor yellowColor] setStroke];
-            [plantPath stroke];
+            plant.size += 0.1;
         }
+        else
+        {
+            plant.size = MAX(0.1, plant.size - 0.3);
+        }
+        
+        UIBezierPath *plantPath = [UIBezierPath bezierPath];
+        CGPoint startPoint = CGPointMake(self.planetCenter.x + dotCenter.x, self.planetCenter.y + dotCenter.y);
+        [plantPath moveToPoint:startPoint];
+        CGPoint plantVector = CGPointMake(cosf(dotAngle), sinf(dotAngle));
+        
+        CGPoint previousPoint = startPoint;
+        for (int i = 0; i < 10; i++)
+        {
+            float plantLength = plant.size * 10 * (arc4random() / (float)0x100000000);
+            CGPoint plantOffset = CGPointMake(plant.size * 5 * ((arc4random() / (float)0x100000000) * 2 - 1),
+                                              plant.size * 5 * ((arc4random() / (float)0x100000000) * 2 - 1));
+            CGPoint nextPoint = CGPointMake(previousPoint.x + plantVector.x * plantLength + plantOffset.x,
+                                            previousPoint.y + plantVector.y * plantLength + plantOffset.y);
+            [plantPath addLineToPoint:nextPoint];
+            previousPoint = nextPoint;
+        }
+        
+        
+        [plant.color setStroke];
+        [plantPath stroke];
     
     }
 

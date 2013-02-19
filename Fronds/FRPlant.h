@@ -11,5 +11,8 @@
 @interface FRPlant : NSObject
 
 @property (nonatomic) CGPoint relativeLocation;
+@property (nonatomic) float growth;
+@property (nonatomic) float size;
+@property (nonatomic, strong) UIColor *color;
 
 @end
