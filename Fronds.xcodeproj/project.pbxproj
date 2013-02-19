@@ -19,6 +19,8 @@
 		D5E046F116D33A9E00A14784 /* FRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E046F016D33A9E00A14784 /* FRViewController.m */; };
 		D5E046F416D33A9E00A14784 /* FRViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5E046F216D33A9E00A14784 /* FRViewController_iPhone.xib */; };
 		D5E046F716D33A9E00A14784 /* FRViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5E046F516D33A9E00A14784 /* FRViewController_iPad.xib */; };
+		D5E046FF16D33B3100A14784 /* FRView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E046FE16D33B3100A14784 /* FRView.m */; };
+		D5E0470216D35A0A00A14784 /* FRPlant.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E0470116D35A0A00A14784 /* FRPlant.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +41,10 @@
 		D5E046F016D33A9E00A14784 /* FRViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FRViewController.m; sourceTree = "<group>"; };
 		D5E046F316D33A9E00A14784 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FRViewController_iPhone.xib; sourceTree = "<group>"; };
 		D5E046F616D33A9E00A14784 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FRViewController_iPad.xib; sourceTree = "<group>"; };
+		D5E046FD16D33B3100A14784 /* FRView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FRView.h; sourceTree = "<group>"; };
+		D5E046FE16D33B3100A14784 /* FRView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FRView.m; sourceTree = "<group>"; };
+		D5E0470016D35A0A00A14784 /* FRPlant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FRPlant.h; sourceTree = "<group>"; };
+		D5E0470116D35A0A00A14784 /* FRPlant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FRPlant.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +98,10 @@
 				D5E046F216D33A9E00A14784 /* FRViewController_iPhone.xib */,
 				D5E046F516D33A9E00A14784 /* FRViewController_iPad.xib */,
 				D5E046DE16D33A9E00A14784 /* Supporting Files */,
+				D5E046FD16D33B3100A14784 /* FRView.h */,
+				D5E046FE16D33B3100A14784 /* FRView.m */,
+				D5E0470016D35A0A00A14784 /* FRPlant.h */,
+				D5E0470116D35A0A00A14784 /* FRPlant.m */,
 			);
 			path = Fronds;
 			sourceTree = "<group>";
@@ -181,6 +191,8 @@
 				D5E046E416D33A9E00A14784 /* main.m in Sources */,
 				D5E046E816D33A9E00A14784 /* FRAppDelegate.m in Sources */,
 				D5E046F116D33A9E00A14784 /* FRViewController.m in Sources */,
+				D5E046FF16D33B3100A14784 /* FRView.m in Sources */,
+				D5E0470216D35A0A00A14784 /* FRPlant.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
