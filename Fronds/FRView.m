@@ -146,17 +146,17 @@
         }
         
 //        UIBezierPath *plantPath = [UIBezierPath bezierPath];
-        UIBezierPath *plantPath = [self spiralPathWithX:self.planetCenter.x + dotCenter.x withY:self.planetCenter.y + dotCenter.y withTurns:3];
-//        CGPoint startPoint = CGPointMake(self.planetCenter.x + dotCenter.x, self.planetCenter.y + dotCenter.y);
-//        [plantPath moveToPoint:startPoint];
+        UIBezierPath *plantPath;
+        CGPoint startPoint = CGPointMake(self.planetCenter.x + dotCenter.x, self.planetCenter.y + dotCenter.y);
+        [plantPath moveToPoint:startPoint];
 //        CGPoint plantVector = CGPointMake(cosf(dotAngle), sinf(dotAngle));
 //        
 //        CGPoint previousPoint = startPoint;
-//        for (int i = 0; i < 10; i++)
-//        {
-////            float plantLength = plant.size * 10 * (arc4random() / (float)0x100000000);
-////            CGPoint plantOffset = CGPointMake(plant.size * 5 * ((arc4random() / (float)0x100000000) * 2 - 1),
-////                                              plant.size * 5 * ((arc4random() / (float)0x100000000) * 2 - 1));
+        for (int i = 0; i < 10; i++)
+        {
+//            float plantLength = plant.size * 10 * (arc4random() / (float)0x100000000);
+//            CGPoint plantOffset = CGPointMake(plant.size * 5 * ((arc4random() / (float)0x100000000) * 2 - 1),
+//                                              plant.size * 5 * ((arc4random() / (float)0x100000000) * 2 - 1));
 //            float plantLength = plant.size * 10;
 //            CGPoint plantOffset = CGPointMake(plant.size * 5,
 //                                              plant.size * 5);
@@ -164,7 +164,8 @@
 //                                            previousPoint.y + plantVector.y * plantLength + plantOffset.y);
 //            [plantPath addLineToPoint:nextPoint];
 //            previousPoint = nextPoint;
-//        }
+            plantPath = [self spiralPathWithX:self.planetCenter.x + dotCenter.x withY:self.planetCenter.y + dotCenter.y withTurns:(int)(plant.size * 5)];
+        }
         
         
         [plant.color setStroke];
