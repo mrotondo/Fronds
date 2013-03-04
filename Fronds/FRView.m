@@ -37,7 +37,7 @@
 - (void)createPlants
 {
     self.plants = [NSMutableArray array];
-    for (int i = 0; i < 2000; i++)
+    for (int i = 0; i < 200; i++)
     {
         float circleAngle = M_PI + ((arc4random() / (float)0x100000000) * M_PI);
         float circleDistance = (arc4random() / (float)0x100000000) * self.planetRadius;
@@ -81,7 +81,7 @@
                                    planetSize.width, planetSize.height);
     UIBezierPath *planetPath = [UIBezierPath bezierPathWithOvalInRect:planetRect];
 
-    UIColor *earthsSoil = [UIColor colorWithRed:0.648 green:0.480 blue:0.074 alpha:1.000];
+    UIColor *earthsSoil = [UIColor colorWithRed:0.159 green:0.082 blue:0 alpha:1.000];
     [earthsSoil setFill];
     [earthsSoil setStroke];
     
@@ -145,25 +145,26 @@
             plant.size = MAX(0.1, plant.size - 0.3);
         }
         
-        UIBezierPath *plantPath = [UIBezierPath bezierPath];
-        CGPoint startPoint = CGPointMake(self.planetCenter.x + dotCenter.x, self.planetCenter.y + dotCenter.y);
-        [plantPath moveToPoint:startPoint];
-        CGPoint plantVector = CGPointMake(cosf(dotAngle), sinf(dotAngle));
-        
-        CGPoint previousPoint = startPoint;
-        for (int i = 0; i < 10; i++)
-        {
-//            float plantLength = plant.size * 10 * (arc4random() / (float)0x100000000);
-//            CGPoint plantOffset = CGPointMake(plant.size * 5 * ((arc4random() / (float)0x100000000) * 2 - 1),
-//                                              plant.size * 5 * ((arc4random() / (float)0x100000000) * 2 - 1));
-            float plantLength = plant.size * 10;
-            CGPoint plantOffset = CGPointMake(plant.size * 5,
-                                              plant.size * 5);
-            CGPoint nextPoint = CGPointMake(previousPoint.x + plantVector.x * plantLength + plantOffset.x,
-                                            previousPoint.y + plantVector.y * plantLength + plantOffset.y);
-            [plantPath addLineToPoint:nextPoint];
-            previousPoint = nextPoint;
-        }
+//        UIBezierPath *plantPath = [UIBezierPath bezierPath];
+        UIBezierPath *plantPath = [self spiralPathWithX:self.planetCenter.x + dotCenter.x withY:self.planetCenter.y + dotCenter.y withTurns:3];
+//        CGPoint startPoint = CGPointMake(self.planetCenter.x + dotCenter.x, self.planetCenter.y + dotCenter.y);
+//        [plantPath moveToPoint:startPoint];
+//        CGPoint plantVector = CGPointMake(cosf(dotAngle), sinf(dotAngle));
+//        
+//        CGPoint previousPoint = startPoint;
+//        for (int i = 0; i < 10; i++)
+//        {
+////            float plantLength = plant.size * 10 * (arc4random() / (float)0x100000000);
+////            CGPoint plantOffset = CGPointMake(plant.size * 5 * ((arc4random() / (float)0x100000000) * 2 - 1),
+////                                              plant.size * 5 * ((arc4random() / (float)0x100000000) * 2 - 1));
+//            float plantLength = plant.size * 10;
+//            CGPoint plantOffset = CGPointMake(plant.size * 5,
+//                                              plant.size * 5);
+//            CGPoint nextPoint = CGPointMake(previousPoint.x + plantVector.x * plantLength + plantOffset.x,
+//                                            previousPoint.y + plantVector.y * plantLength + plantOffset.y);
+//            [plantPath addLineToPoint:nextPoint];
+//            previousPoint = nextPoint;
+//        }
         
         
         [plant.color setStroke];
@@ -175,6 +176,66 @@
 
     [[UIColor yellowColor] setFill];
     [sunshinePath fillWithBlendMode:kCGBlendModeSourceAtop alpha:0.5];
+}
+
+- (UIBezierPath *)spiralPathWithX:(double)centerX withY:(double)centerY withTurns:(int)turns {
+	
+	int iDegrees = 15;			// Angle between points. 15, 20, 24, 30.
+	int iN = 360 / iDegrees;		// Total number of points.
+	double dAngleOne;			// iDegrees as radians.
+	double dAngle;				// Cumulative radians while stepping.
+	double dSpace = 5.0;		// Space between turns.
+	double dSpaceStep;			// dSpace/iN.
+	double dR = 0;				// Radius of inside circle.
+    double X = 0.0;				// x co-ordinate of a point.
+	double Y = 0.0;				// y co-ordinate of a point.
+    
+	// Control- and end-points.
+	// First 2 points are control-points.
+	// Third point is end-point.
+	dAngleOne = M_PI * iDegrees / 180.0;
+	dSpaceStep = 0; // -dSpace / (double)iN;
+	double iCount = -1;
+	
+	CGPoint c1 = CGPointMake(0, 0);
+	CGPoint c2 = CGPointMake(0, 0);
+	
+	UIBezierPath *path = [UIBezierPath bezierPath];
+	[path moveToPoint:CGPointMake(centerX, centerY)];
+	
+	for (int k = 0; k < turns; k++)
+	{
+		for (int i = iDegrees; i <= 360; i += iDegrees)
+		{
+			dSpaceStep += dSpace / (double)iN;
+			dAngle = M_PI * i / 180.0;
+			
+			// Get points.
+			iCount += 1;
+			if ((iCount == 0) || (iCount == 1))
+			{
+				// Control-point.
+				X = ((dR + dSpaceStep) / cos(dAngleOne)) * cos(dAngle) + centerX;
+				Y = ((dR + dSpaceStep) / cos(dAngleOne)) * sin(dAngle) + centerY;
+				
+				if (iCount == 0)
+					c1 = CGPointMake(X, Y);
+				else
+					c2 = CGPointMake(X, Y);
+			}
+			else
+			{
+				// End-point.
+				X = (dR + dSpaceStep) * cos(dAngle) + centerX;
+				Y = (dR + dSpaceStep) * sin(dAngle) + centerY;
+				iCount = -1;
+				
+				[path addCurveToPoint:CGPointMake(X, Y) controlPoint1:c1 controlPoint2:c2];
+			}
+		}
+	}
+	
+	return path;
 }
 
 @end
