@@ -14,5 +14,6 @@
 @property (nonatomic) float growth;
 @property (nonatomic) float size;
 @property (nonatomic, strong) UIColor *color;
+@property (nonatomic) float angle;
 
 @end

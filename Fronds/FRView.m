@@ -99,8 +99,8 @@
         
         float dotAngle = atan2f(dotCenter.y, dotCenter.x) + 2 * M_PI;
         
-        UIColor *dotColor = [UIColor whiteColor];
-        float dotRadius = 8;
+//        UIColor *dotColor = [UIColor whiteColor];
+//        float dotRadius = 8;
 
         BOOL isInSunshine = NO;
         
@@ -117,24 +117,24 @@
             isInSunshine = YES;
         }
         
-        if (isInSunshine)
-        {
-            dotColor = [UIColor greenColor];
-            dotRadius = (arc4random() / (float)0x100000000) * 10 + 10;
-        }
-        
-        CGSize dotSize = CGSizeMake(dotRadius * 2, dotRadius * 2);
-        CGRect dotRect = CGRectMake(self.planetCenter.x + dotCenter.x - dotRadius,
-                                    self.planetCenter.y + dotCenter.y - dotRadius,
-                                    dotSize.width, dotSize.height);
-        UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:dotRect];
-        
-        [dotColor setFill];
-        [[UIColor blackColor] setStroke];
-        
-//        path.lineWidth = 1;
-//        [path fill];
-//        [path stroke];
+//        if (isInSunshine)
+//        {
+//            dotColor = [UIColor greenColor];
+//            dotRadius = (arc4random() / (float)0x100000000) * 10 + 10;
+//        }
+      
+//        CGSize dotSize = CGSizeMake(dotRadius * 2, dotRadius * 2);
+//        CGRect dotRect = CGRectMake(self.planetCenter.x + dotCenter.x - dotRadius,
+//                                    self.planetCenter.y + dotCenter.y - dotRadius,
+//                                    dotSize.width, dotSize.height);
+//        UIBezierPath *dotPath = [UIBezierPath bezierPathWithOvalInRect:dotRect];
+//        
+//        [dotColor setFill];
+//        [[UIColor blackColor] setStroke];
+//        
+//        dotPath.lineWidth = 1;
+//        [dotPath fill];
+//        [dotPath stroke];
 
         if (isInSunshine)
         {
@@ -153,9 +153,12 @@
         CGPoint previousPoint = startPoint;
         for (int i = 0; i < 10; i++)
         {
-            float plantLength = plant.size * 10 * (arc4random() / (float)0x100000000);
-            CGPoint plantOffset = CGPointMake(plant.size * 5 * ((arc4random() / (float)0x100000000) * 2 - 1),
-                                              plant.size * 5 * ((arc4random() / (float)0x100000000) * 2 - 1));
+//            float plantLength = plant.size * 10 * (arc4random() / (float)0x100000000);
+//            CGPoint plantOffset = CGPointMake(plant.size * 5 * ((arc4random() / (float)0x100000000) * 2 - 1),
+//                                              plant.size * 5 * ((arc4random() / (float)0x100000000) * 2 - 1));
+            float plantLength = plant.size * 10;
+            CGPoint plantOffset = CGPointMake(plant.size * 5,
+                                              plant.size * 5);
             CGPoint nextPoint = CGPointMake(previousPoint.x + plantVector.x * plantLength + plantOffset.x,
                                             previousPoint.y + plantVector.y * plantLength + plantOffset.y);
             [plantPath addLineToPoint:nextPoint];

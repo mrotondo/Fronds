@@ -15,7 +15,7 @@
     self = [super init];
     if (self) {
         self.size = 1.0;
-        self.color = [UIColor colorWithRed:(arc4random() / (float)0x100000000) green:(arc4random() / (float)0x100000000) blue:(arc4random() / (float)0x100000000) alpha:1.0];
+        self.color = [UIColor colorWithRed:(arc4random() / (float)0x100000000) * 0.1 green:(arc4random() / (float)0x100000000) blue:(arc4random() / (float)0x100000000) * 0.1 alpha:1.0];
     }
     return self;
 }
